@@ -33,12 +33,7 @@ US_accidents <- read_csv("data/US_accidents.csv",
         Weather_Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")))
 ```
 
-
 # Introduction
-
-## Group Information
-Group Name: "Accident Prevention Analytics Consultant Group"
-
 
 ## Dataset description
 This is a countrywide car accident dataset, which covers 49 states of the USA. The accident data are collected from February 2016 to Dec 2020, there are about 4.2 million accident records in this dataset.
@@ -94,24 +89,28 @@ accidents <- US_accidents %>%
       separate(End_Time,into = c("e_year","e_month", "e_date","e_hour","e_minute"))
 ```
 
-
-## Data Subset creation
-Here we created smaller subsets of main data for plot usage.
-
+```{r}
+ggp2 <- accidents %>%
+  select(s_month,Severity) %>%
+  ggplot()+
+  geom_bar(mapping = aes(x= s_month), fill= "brown", alpha = 0.5)+
+  facet_wrap(~Severity) + 
+  labs(x= "Months",
+       y= "count of accidents",
+       title= "Monthly view for accidents")
+ggp2 +
+  scale_y_continuous(labels = comma)
+```
 
 ## The relationship between severity and distance affected during Day and Night:
 We'd love to analysis whether the higher severity the longer the distance affected would be. Also We want to check whether day time or night time has different impact on them.
 We have plot that data in to scatter plot we used ggplot and geom point, and put Severity on the X axis and Distance on the Y axis. We set legend by Sunrise_Sunset.Also, utilized labs functions to give titles to axis and graph.
 
 ```{r}
-# Creating another table for severity and distance relationship analysis.
+# Create a plot showing the relationship between severity and distance during Day and Night.
 sd <- accidents %>%
   select(Severity, Distance,Sunrise_Sunset) 
-```
 
-
-```{r}
-# Create a plot showing the relationship between severity and distance during Day and Night.
 ggplot(data= sd) +
   geom_point(mapping = aes(x= Severity, y= Distance, size = 10, color = Sunrise_Sunset, alpha = 0.5))+
   labs(x= "Severity",
