@@ -1,12 +1,13 @@
 ---
-title: "Accident Prevention Analytics Consultant Group - Part 1"
+title: "Group Project - Part 1"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-authors: "Yuxiang Chi, Raj Kumar, Chandrark Thaker, Richa Patel"
 subtitle: "Accident Prevention Analytics Consultant Group"
+author: "Yuxiang Chi, Raj Kumar, Chandrark Thaker, Richa Patel"
 output:
   word_document:
     toc: yes
-editor_options:
+    reference_docx: word-styles-reference-01.docx
+editor_options: 
   chunk_output_type: inline
 ---
   
